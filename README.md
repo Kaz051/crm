@@ -1,24 +1,87 @@
-# README
+### usersテーブル
+| Column             | Type   | Option                   |
+| ------------------ | ------ | ------------------------ |
+| name               | string | null:false               |
+| email              | string | null:false, unique: true |
+| encrypted_password | string | null:false,              |
+<br>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Association
+- has_many :customers
+- has_many :estimates
+- has_many :user_items
+- has_many :items, through: :user_items
+<br>
+<br>
 
-Things you may want to cover:
+### itemsテーブル
+| Column                 | Type       | Option                        |
+| ---------------------- | ---------- | ----------------------------- |
+| name                   | string     | null:false                    |
+| price                  | integer    | null:false                    |
+<br>
 
-* Ruby version
+### Association
+- has_many :estimates
+- has_many :user_items
+- has_many :users, through: :user_items
+- has_many :customer_items
+- has_many :customers, through: :customer_items
+<br>
+<br>
 
-* System dependencies
+### customersテーブル
+| Column        | Type       | Option                        |
+| ------------- | ---------- | ----------------------------- |
+| user          | references | null:false, foreign_key: true |
+| item          | references | null:false, foreign_key: true |
+| name          | string     | null:false                    |
+<br>
 
-* Configuration
+### Association
+- has_many :estimates
+- has_many :customer_items
+- has_many :items, through: :customer_items
+- belongs_to :user
+<br>
+<br>
 
-* Database creation
+### estimatesテーブル
+| Column        | Type       | Option                        |
+| ------------- | ---------- | ----------------------------- |
+| user          | references | null:false, foreign_key: true |
+| item          | references | null:false, foreign_key: true |
+| customer      | references | null:false, foreign_key: true |
+| selling_price | integer    | null:false                    |
+<br>
 
-* Database initialization
+### Association
+- belongs_to :user
+- belongs_to :item
+- belongs_to :customer
+<br>
+<br>
 
-* How to run the test suite
+### user_itemsテーブル
+| Column        | Type       | Option                        |
+| ------------- | ---------- | ----------------------------- |
+| user          | references | null:false, foreign_key: true |
+| item          | references | null:false, foreign_key: true |
+<br>
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :user
+- belongs_to :item
+<br>
+<br>
 
-* Deployment instructions
+### customer_itemsテーブル
+| Column        | Type       | Option                        |
+| ------------- | ---------- | ----------------------------- |
+| item          | references | null:false, foreign_key: true |
+| customer      | references | null:false, foreign_key: true |
+<br>
 
-* ...
+### Association
+- belongs_to :item
+- belongs_to :customer
