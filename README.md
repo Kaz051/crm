@@ -18,7 +18,7 @@
 | Column                 | Type       | Option                        |
 | ---------------------- | ---------- | ----------------------------- |
 | name                   | string     | null:false                    |
-| price                  | integer    | null:false                    |
+| purchase_price         | integer    | null:false                    |
 <br>
 
 ### Association
@@ -52,6 +52,7 @@
 | user          | references | null:false, foreign_key: true |
 | item          | references | null:false, foreign_key: true |
 | customer      | references | null:false, foreign_key: true |
+| rate          | integer    | null:false                    |
 | selling_price | integer    | null:false                    |
 <br>
 
