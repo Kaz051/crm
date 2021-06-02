@@ -1,0 +1,9 @@
+<div class="contents row">
+  <div class="container">
+    <h3>顧客登録</h3>
+    <%= form_with(model: @customer, local: true) do |form| %>
+      <%= form.text_field :name, placeholder: "name" %>
+      <%= form.submit "SEND" %>
+    <% end %>
+  </div>
+</div>
