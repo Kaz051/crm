@@ -1,9 +1,19 @@
 <div class="contents row">
+  <br>
+  <div><%= link_to "見積り登録", "/", class: "post" %>
+  </div>
+  <div><%= link_to "顧客登録", new_customer_path, class: "post" %>
+  </div>
+  <div><%= link_to "商品登録", "/", class: "post" %>
+  </div>
+  <br>
+  <div>
+    顧客一覧
+  </div>
   <% @customers.each do |customer| %>
     <div class="content_post" >
-      <p><%= customer.text %></p>
       <span class="name">
-        <%= customer.name %>
+        <%= link_to customer.name, customer_path(customer), class: "post" %>
       </span>
     </div>
   <% end %>
