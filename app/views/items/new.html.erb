@@ -1,0 +1,10 @@
+<div class="contents row">
+  <div class="container">
+    <h3>商品登録</h3>
+    <%= form_with(model: @item, local: true) do |form| %>
+      <%= form.text_field :name, placeholder: "name" %>
+      <%= form.text_field :purchase_price, placeholder: "price" %>
+      <%= form.submit "SEND" %>
+    <% end %>
+  </div>
+</div>

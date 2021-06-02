@@ -1,2 +1,12 @@
-<h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+<br>
+<h3>商品一覧</h3>
+<div class="contents row">
+  <% @items.each do |item| %>
+    <div class="content_post" >
+      <span class="name">
+        <%= item.name %>
+        <%= item.purchase_price %>円
+      </span>
+    </div>
+  <% end %>
+</div>

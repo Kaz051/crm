@@ -4,12 +4,12 @@
   </div>
   <div><%= link_to "顧客登録", new_customer_path, class: "post" %>
   </div>
-  <div><%= link_to "商品登録", "/", class: "post" %>
+  <div><%= link_to "商品登録", new_item_path, class: "post" %>
+  </div>
+  <div><%= link_to "商品一覧", items_path, class: "post" %>
   </div>
   <br>
-  <div>
-    顧客一覧
-  </div>
+  <h3>顧客一覧</h3>
   <% @customers.each do |customer| %>
     <div class="content_post" >
       <span class="name">
