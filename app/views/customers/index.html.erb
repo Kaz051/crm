@@ -1,11 +1,13 @@
 <div class="contents row">
   <br>
+  <% if user_signed_in? %>
   <div><%= link_to "見積り登録", "/", class: "post" %>
   </div>
   <div><%= link_to "顧客登録", new_customer_path, class: "post" %>
   </div>
   <div><%= link_to "商品登録", new_item_path, class: "post" %>
   </div>
+  <% end %>
   <div><%= link_to "商品一覧", items_path, class: "post" %>
   </div>
   <br>
