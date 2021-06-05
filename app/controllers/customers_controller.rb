@@ -18,6 +18,8 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @estimate = Estimate.new
+    @estimates = @customer.estimates.includes(:user)
   end
 
   private

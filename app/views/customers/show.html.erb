@@ -2,6 +2,24 @@
   <br>
   <span class="name"><%= @customer.name %>
   </span>
-</div>
-<div><%= link_to "見積り登録", new_estimate_path, class: "post" %>
+  <div class="container">
+    <% if user_signed_in? %>
+      <h3>見積り登録</h3>
+      <%= form_with(model: [@customer, @estimate], local: true) do |form| %>
+      <%= form.collection_select(:item_name, Item.all, :name, :name, include_blank: "選択して下さい") %>
+      <%= form.text_field :selling_price, placeholder: "price"%>
+      <%= form.submit "登録" %>
+      <% end %>
+    <% else %>
+      <strong><p>※※※ 見積り登録には新規登録/ログインが必要です ※※※</p></strong>
+    <% end %>
+    <div class="comments">
+      <h4>＜見積り一覧＞</h4>
+      <% @estimates.each do |estimate| %>
+        <p>
+          <strong><%= link_to estimate.user.name, "/users/#{estimate.user_id}" %>：</strong>
+          <%= estimate.selling_price %>
+        </p>
+      <% end %>
+    </div>
   </div>
