@@ -1,8 +1,4 @@
 class EstimatesController < ApplicationController
-  def new
-    @estimate = Estimate.new
-  end
-
   def create
     @estimate = Estimate.new(estimate_params)
     if @estimate.save
