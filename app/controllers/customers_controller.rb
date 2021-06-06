@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   def index
-    @customers = Customer.all.order('created_at DESC')
+    @customers = Customer.all.order('name')
   end
 
   def new
@@ -18,6 +18,8 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @estimate = Estimate.new
+    @estimates = @customer.estimates.includes(:user).order('created_at DESC')
   end
 
   private

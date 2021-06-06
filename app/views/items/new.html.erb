@@ -5,9 +5,9 @@
 
       <%= render 'shared/error_messages', model: form.object %>
 
-      <%= form.text_field :name, placeholder: "name" %>
-      <%= form.text_field :purchase_price, placeholder: "price" %>
-      <%= form.submit "SEND" %>
+      <%= form.text_field :name, placeholder: "商品名" %>
+      <%= form.text_field :purchase_price, placeholder: "仕入れ価格" %>
+      <%= form.submit "登録" %>
     <% end %>
   </div>
 </div>
