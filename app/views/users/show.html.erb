@@ -1,3 +1,18 @@
 <div class="contents row">
-  <h3><%= @user.name %>の顧客一覧</h3>
+  <h3><%= @user.name %>のブックマーク一覧</h3>
+  <table>
+    <%# <caption>ブックマーク一覧</caption>  #参考サイトに書いてあったのでそのまま記載。必要なければ消すこと。 %>
+    <tbody>
+      <% @bookmarks.each do |bookmark| %>
+        <tr>
+          <td>
+            <%= link_to customer_path(bookmark.customer) do %>
+              <%= bookmark.customer.name %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>
