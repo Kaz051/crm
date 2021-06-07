@@ -15,7 +15,7 @@
         <h1 class="grid-6"><a href="/">CRM</a></h1>
         <% if user_signed_in? %>
           <div class="user_nav grid-6">
-            <%= link_to current_user.name, user_path(current_user) %>
+            <%= link_to "#{current_user.name}のマイページ", user_path(current_user) %>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
           </div>
         <% else %>
