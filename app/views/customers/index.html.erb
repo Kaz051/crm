@@ -8,8 +8,7 @@
   <% end %>
   <div><%= link_to "商品一覧", items_path, class: "post" %>
   </div>
-  <br>
-  <h4>顧客一覧</h4>
+  <h4>＜顧客一覧＞</h4>
   <% @customers.each do |customer| %>
     <div class="content_post" >
       <span class="name">
@@ -17,4 +16,25 @@
       </span>
     </div>
   <% end %>
+  <br>
+  <div class="container">
+    <% if user_signed_in? %>
+      <%= form_with(model: @post, local: true) do |form| %>
+        <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
+        <%= form.submit "投稿" %>
+      <% end %>
+    <% else %>
+      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+    <% end %>
+    <div class="comments">
+      <h4>＜投稿一覧＞</h4>
+      <% @posts.each do |post| %>
+        <p>
+          <strong><%= link_to post.user.name, "/users/#{post.user_id}" %>：</strong>
+          <%= post.created_at.strftime('%Y/%m/%d') %>
+          <%= post.text %>
+        </p>
+      <% end %>
+    </div>    
+  </div>  
 </div>

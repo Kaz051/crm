@@ -22,7 +22,7 @@
     <% end %>
   </div>  
   <div class="comments">
-    <h4>見積り一覧</h4>
+    <h4>＜見積り一覧＞</h4>
     <% @estimates.each do |estimate| %>
       <p>
          <strong><%= link_to estimate.user.name, "/users/#{estimate.user_id}" %>：</strong>

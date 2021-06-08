@@ -1,6 +1,9 @@
 class CustomersController < ApplicationController
   def index
     @customers = Customer.all.order('name')
+
+    @post = Post.new
+    @posts = Post.order('created_at DESC')
   end
 
   def new
