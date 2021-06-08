@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_095921) do
+ActiveRecord::Schema.define(version: 2021_06_08_113734) do
 
   create_table "bookmarks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 2021_06_06_095921) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -62,4 +70,5 @@ ActiveRecord::Schema.define(version: 2021_06_06_095921) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "estimates", "customers"
   add_foreign_key "estimates", "users"
+  add_foreign_key "posts", "users"
 end
