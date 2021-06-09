@@ -9,7 +9,8 @@
       <% end %>
     </tr>
   </tbody>
-  <div class="container">
+</div>  
+<div class="container">
     <% if user_signed_in? %>
       <h4>見積り登録</h4>
       <%= form_with(model: [@customer, @estimate], local: true) do |form| %>
@@ -20,16 +21,15 @@
     <% else %>
       <strong><p>※※※ 見積り登録には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
-  </div>  
-  <div class="comments">
-    <h4>見積り一覧</h4>
+</div>  
+<div class="comments">
+    <h4>＜見積り一覧＞</h4>
     <% @estimates.each do |estimate| %>
       <p>
          <strong><%= link_to estimate.user.name, "/users/#{estimate.user_id}" %>：</strong>
-         <%= estimate.created_at.strftime('%Y/%m/%d') %>
+         <%= estimate.created_at.strftime('%F %T') %>
         商品: <%= estimate.item_name %>
         販売価格: <%= estimate.selling_price %>円
       </p>
     <% end %>
-  </div>    
 </div>
