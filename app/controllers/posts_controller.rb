@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def create
     post = Post.create(post_params)
-    redirect_to customers_path
+    render json:{ post: post }
   end
 
   private
