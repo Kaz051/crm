@@ -5,6 +5,7 @@
       <span class="name">
         <%= item.name %>
         <%= item.purchase_price %>円
+        <%= link_to '削除', item_path(item.id), method: :delete %>
       </span>
     </div>
   <% end %>
