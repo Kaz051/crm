@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "customers#index"
-  resources :customers, only: [:index, :new, :create, :show, :destroy] do
+  resources :customers, only: [:index, :new, :create, :show, :destroy, :edit, :update] do
     resources :estimates, only: [:create, :destroy]
     resource :bookmarks, only: [:create, :destroy]
   end  

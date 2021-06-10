@@ -2,6 +2,7 @@
   <tbody>
     <tr>
       <h4><td><%= @customer.name %></td><h4>
+      <%= link_to '顧客編集', edit_customer_path(@customer.id), method: :get %>
       <%= link_to '顧客削除', customer_path(@customer.id), method: :delete %>
       <br>
       <% if @customer.bookmarked_by?(current_user) %>

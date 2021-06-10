@@ -1,0 +1,12 @@
+<div class="contents row">
+  <div class="container">
+    <h4>顧客編集</h4>
+    <%= form_with(model: @customer, local: true) do |form| %>
+
+      <%= render 'shared/error_messages', model: form.object %>
+    
+      <%= form.text_field :name, placeholder: "顧客名" %>
+      <%= form.submit "編集" %>
+    <% end %>
+  </div>
+</div>
