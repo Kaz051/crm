@@ -28,7 +28,7 @@
     <h4>＜見積り一覧＞</h4>
     <% @estimates.each do |estimate| %>
       <p>
-         <strong><%= link_to estimate.user.name, "/users/#{estimate.user_id}" %>：</strong>
+         <strong><%= link_to estimate.user.name, user_path(estimate.user_id) %>：</strong>
          <%= estimate.created_at.strftime('%F %T') %>
         商品: <%= estimate.item_name %>
         販売価格: <%= estimate.selling_price %>円
