@@ -25,6 +25,12 @@ class CustomersController < ApplicationController
     @estimates = @customer.estimates.includes(:user).order('created_at DESC')
   end
 
+  def destroy
+    @customer = Customer.find(params[:id])
+    @customer.destroy
+    redirect_to customers_path
+  end
+
   private
   def customer_params
     params.require(:customer).permit(:name)

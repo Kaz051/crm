@@ -37,6 +37,7 @@
           <strong><%= link_to post.user.name, "/users/#{post.user_id}" %>：</strong>
           <%= post.created_at.strftime('%F %T') %>：
           <%= post.text %>
+          <%= link_to '削除', post_path(post.id), method: :delete %>
         </p>
       <% end %>
     </div>    
