@@ -14,16 +14,12 @@
   </tbody>
 </div>  
 <div class="container">
-    <% if user_signed_in? %>
       <h4>見積り登録</h4>
       <%= form_with(model: [@customer, @estimate], local: true) do |form| %>
       <%= form.collection_select(:item_name, Item.all, :name, :view_name_and_purchase_price, include_blank: "商品を選択") %>
       <%= form.text_field :selling_price, placeholder: "販売価格"%>
       <%= form.submit "登録" %>
       <% end %>
-    <% else %>
-      <strong><p>※※※ 見積り登録には新規登録/ログインが必要です ※※※</p></strong>
-    <% end %>
 </div>  
 <div class="comments">
     <h4>＜見積り一覧＞</h4>
