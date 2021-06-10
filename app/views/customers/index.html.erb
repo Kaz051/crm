@@ -1,13 +1,13 @@
 <div class="contents row">
   <br>
   <% if user_signed_in? %>
-  <div><%= link_to "顧客登録", new_customer_path, class: "post" %>
-  </div>
-  <div><%= link_to "商品登録", new_item_path, class: "post" %>
-  </div>
-  <% end %>
-  <div><%= link_to "商品一覧", items_path, class: "post" %>
-  </div>
+   <div><%= link_to "顧客登録", new_customer_path, class: "post" %>
+   </div>
+   <div><%= link_to "商品登録", new_item_path, class: "post" %>
+   </div>
+   <div><%= link_to "商品一覧", items_path, class: "post" %>
+   </div>
+  <% end %>
   <h4>＜顧客一覧＞</h4>
   <% @customers.each do |customer| %>
     <div class="content_post" >
@@ -23,23 +23,23 @@
         <%= form.text_area :text, placeholder: "コメントする", rows: "2", id: "content" %>
         <%= form.submit "投稿" , id: "submit" %>
       <% end %>
-    <% else %>
-      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
-    <div class="comments">
-      <h4>＜投稿一覧＞</h4>
+    <% if user_signed_in? %>
+     <div class="comments">
+       <h4>＜投稿一覧＞</h4>
 
-      <div id="list">
-      </div>
+       <div id="list">
+       </div>
 
-      <% @posts.each do |post| %>
-        <p>
-          <strong><%= link_to post.user.name, user_path(post.user_id) %>：</strong>
-          <%= post.created_at.strftime('%F %T') %>：
-          <%= post.text %>
-          <%= link_to '削除', post_path(post.id), method: :delete %>
-        </p>
-      <% end %>
-    </div>    
+       <% @posts.each do |post| %>
+         <p>
+           <strong><%= link_to post.user.name, user_path(post.user_id) %>：</strong>
+           <%= post.created_at.strftime('%F %T') %>：
+           <%= post.text %>
+           <%= link_to '削除', post_path(post.id), method: :delete %>
+         </p>
+       <% end %> 
+     </div>
+    <% end %>    
   </div>  
 </div>
