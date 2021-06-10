@@ -29,7 +29,9 @@
          <%= estimate.created_at.strftime('%F %T') %>
         商品: <%= estimate.item_name %>
         販売価格: <%= estimate.selling_price %>円
-        <%= link_to '削除', customer_estimate_path(estimate.id), method: :delete %>
+        <% if current_user.id == estimate.user_id %>
+          <%= link_to '削除', customer_estimate_path(estimate.id), method: :delete %>
+        <% end %>
       </p>
     <% end %>
 </div>
