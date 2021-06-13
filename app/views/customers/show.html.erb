@@ -1,37 +1,51 @@
-<div class="contents row">
-  <tbody>
-    <tr>
-      <h4><td><%= @customer.name %></td><h4>
-      <%= link_to '顧客編集', edit_customer_path(@customer.id), method: :get %>
-      <%= link_to '顧客削除', customer_path(@customer.id), method: :delete %>
-      <br>
-      <% if @customer.bookmarked_by?(current_user) %>
-         <td><%= link_to "ブックマークを外す", customer_bookmarks_path(@customer), method: :delete %></td>
-      <% else %>
-        <td><%= link_to "ブックマーク", customer_bookmarks_path(@customer), method: :post %></td>
-      <% end %>
-    </tr>
-  </tbody>
-</div>  
-<div class="container">
-      <h4>見積り登録</h4>
-      <%= form_with(model: [@customer, @estimate], local: true) do |form| %>
-      <%= form.collection_select(:item_name, Item.all, :name, :view_name_and_purchase_price, include_blank: "商品を選択") %>
-      <%= form.text_field :selling_price, placeholder: "販売価格"%>
-      <%= form.submit "登録" %>
-      <% end %>
-</div>  
-<div class="comments">
-    <h4>＜見積り一覧＞</h4>
-    <% @estimates.each do |estimate| %>
-      <p>
-         <strong><%= link_to estimate.user.name, user_path(estimate.user_id) %>：</strong>
-         <%= estimate.created_at.strftime('%F %T') %>
-        商品: <%= estimate.item_name %>
-        販売価格: <%= estimate.selling_price %>円
-        <% if current_user.id == estimate.user_id %>
-          <%= link_to '削除', customer_estimate_path(estimate.id), method: :delete %>
+<div class="main">
+  <div class="inner">
+    <div class="form__wrapper">
+      <h2 class="page-heading"><%= @customer.name %>の詳細ページ</h2>
+      <div class="contents row">
+        <tbody>
+          <tr>
+          <%# <h4><td><%= @customer.name %></td><h4>
+            <div class="menu_parent" >
+              <%= link_to '顧客編集', edit_customer_path(@customer.id), class: "menu_1", method: :get %>
+              <%= link_to '顧客削除', customer_path(@customer.id), class: "menu_1", method: :delete %>
+              <% if @customer.bookmarked_by?(current_user) %>
+                <td><%= link_to "ブックマークを外す", customer_bookmarks_path(@customer), class: "menu_1", method: :delete %></td>
+              <% else %>
+                <td><%= link_to "ブックマーク", customer_bookmarks_path(@customer), class: "menu_1", method: :post %></td>
+              <% end %>
+            </div>  
+          </tr>
+        </tbody>
+      </div><br>
+      <div class="container">
+        <h3>見積り登録</h3>
+        <%= form_with(model: [@customer, @estimate], local: true) do |form| %>
+          <div class="field">
+            <%= form.collection_select(:item_name, Item.all, :name, :view_name_and_purchase_price, include_blank: "商品を選択") %>
+            <%= form.text_field :selling_price, placeholder: "販売価格"%>円
+          </div>
+          <div class="actions">
+            <%= form.submit "登録", class: :form__btn  %>
+          </div>    
         <% end %>
-      </p>
-    <% end %>
+      </div>  
+      <div class="comments">
+        <h4>＜見積り一覧＞</h4>
+        <% @estimates.each do |estimate| %>
+          <p>
+            <strong><%= link_to estimate.user.name, user_path(estimate.user_id) %>：</strong>
+            <%= estimate.created_at.strftime('%F %T') %>
+            商品: <%= estimate.item_name %>
+            販売価格: <%= estimate.selling_price %>円
+            <% if current_user.id == estimate.user_id %>
+              <%= link_to '削除', customer_estimate_path(estimate.id), class: "menu_1", method: :delete %>
+            <% end %>
+          </p>
+        <% end %>
+      </div><br>
+      <div><%= link_to "トップページへ戻る", root_path, class: "menu" %>
+      </div>
+    </div>
+  </div>
 </div>

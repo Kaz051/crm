@@ -1,47 +1,53 @@
-<div class="contents row">
-  <br>
-  <% if user_signed_in? %>
-   <div><%= link_to "顧客登録", new_customer_path, class: "post" %>
-   </div>
-   <div><%= link_to "商品登録", new_item_path, class: "post" %>
-   </div>
-   <div><%= link_to "商品一覧", items_path, class: "post" %>
-   </div>
-  <% end %>
-  <h4>＜顧客一覧＞</h4>
-  <% @customers.each do |customer| %>
-    <div class="content_post" >
-      <span class="name">
-        <%= link_to customer.name, customer_path(customer), class: "post" %>
-      </span>
-    </div>
-  <% end %>
-  <br>
-  <div class="container">
-    <% if user_signed_in? %>
-      <%= form_with model: @post, local: true, method: :post, id: "form" do |form| %>
-        <%= form.text_area :text, placeholder: "コメントする", rows: "2", id: "content" %>
-        <%= form.submit "投稿" , id: "submit" %>
+<div class="main">
+  <div class="inner">
+    <div class="form__wrapper">
+      <h2 class="page-heading">トップページ</h2>
+      <% if user_signed_in? %>
+        <div class="menu_parent" >
+          <div><%= link_to "顧客登録", new_customer_path, class: "menu" %>
+          </div>
+          <div><%= link_to "商品登録", new_item_path, class: "menu" %>
+          </div>
+          <div><%= link_to "商品一覧", items_path, class: "menu" %>
+          </div>
+        </div>
+      <% end %>
+      <h4>＜顧客一覧＞</h4>
+      <% @customers.each do |customer| %>
+        <div class="content_post" >
+          <span class="name">
+            <%= link_to customer.name, customer_path(customer), class: "post" %>
+          </span>
+        </div>
       <% end %>
-    <% end %>
-    <% if user_signed_in? %>
-     <div class="comments">
-       <h4>＜投稿一覧＞</h4>
-
-       <div id="list">
-       </div>
-
-       <% @posts.each do |post| %>
-         <p>
-           <strong><%= link_to post.user.name, user_path(post.user_id) %>：</strong>
-           <%= post.created_at.strftime('%F %T') %>：
-           <%= post.text %>
-           <% if current_user.id == post.user_id %>
-             <%= link_to '削除', post_path(post.id), method: :delete %>
-           <% end %>
-         </p>
-       <% end %> 
-     </div>
-    <% end %>    
-  </div>  
+      <% if user_signed_in? %>
+        <h4>＜コメント投稿＞</h4>
+        <div class="container">
+          <%= form_with model: @post, local: true, method: :post, id: "form" do |form| %>
+            <%= form.text_area :text, placeholder: "コメントする", class: "form_comment", id: "content" %>
+            <div class="actions">
+              <%= form.submit "投稿", class: :form__btn, id: "submit" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <% if user_signed_in? %>
+        <div class="comments">
+          <h4>＜投稿一覧＞</h4>
+          <div id="list">
+          </div>
+          <% @posts.each do |post| %>
+            <p>
+              <strong><%= link_to post.user.name, user_path(post.user_id) %>：</strong>
+              <%= post.created_at.strftime('%F %T') %>：
+              <%= post.text %>
+              <% if current_user.id == post.user_id %>
+                <%= link_to '削除', post_path(post.id), class: :cnt_btn, method: :delete %>
+              <% end %>
+            </p>
+          <% end %>
+        </div>               
+      <% end %>
+    </div>
+  </div>
 </div>

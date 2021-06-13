@@ -1,12 +1,20 @@
-<div class="contents row">
-  <div class="container">
-    <h4>顧客登録</h4>
-    <%= form_with(model: @customer, local: true) do |form| %>
+<div class="main">
+  <div class="inner">
+    <div class="form__wrapper">
+      <h2 class="page-heading">顧客登録</h2>
+      <%= form_with(model: @customer, local: true) do |form| %>
 
-      <%= render 'shared/error_messages', model: form.object %>
-    
-      <%= form.text_field :name, placeholder: "顧客名" %>
-      <%= form.submit "登録" %>
-    <% end %>
-  </div>
+        <%= render 'shared/error_messages', model: form.object %>
+        
+        <div class="field">
+          <%= form.text_field :name, placeholder: "顧客名" %>            
+        </div>
+        <div class="actions">
+          <%= form.submit "登録", class: :form__btn  %>
+        </div>    
+      <% end %>
+      <div><%= link_to "トップページへ戻る", root_path, class: "menu" %>
+      </div>
+    </div>
+  </div>    
 </div>
