@@ -4,7 +4,7 @@ class EstimatesController < ApplicationController
     if @estimate.save
       redirect_to customer_path(@estimate.customer.id)
     else
-      render :new
+      redirect_to customer_path(@estimate.customer.id)
     end
   end
 
