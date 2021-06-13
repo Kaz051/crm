@@ -1,12 +1,20 @@
-<h4>＜商品一覧＞</h4>
-<div class="contents row">
-  <% @items.each do |item| %>
-    <div class="content_post" >
-      <span class="name">
-        商品: <%= item.name %>
-        仕入れ価格: <%= item.purchase_price %>円
-        <%= link_to '削除', item_path(item.id), method: :delete %>
-      </span>
+<div class="main">
+  <div class="inner">
+    <div class="form__wrapper">
+      <h2 class="page-heading">商品一覧</h2>
+      <div class="contents row">
+        <% @items.each do |item| %>
+          <div class="content_post" >
+            <span class="name">
+              商品: <%= item.name %>
+              仕入れ価格: <%= item.purchase_price %>円
+              <%= link_to '削除', item_path(item.id), class: :cnt_btn, method: :delete %>
+            </span>
+          </div>
+        <% end %>        
+      </div><br>
+      <div><%= link_to "トップページへ戻る", root_path, class: "menu" %>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>

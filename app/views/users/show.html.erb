@@ -1,18 +1,26 @@
-<div class="contents row">
-  <h3>＜<%= @user.name %>のブックマーク一覧＞</h3>
-  <table>
-    <%# <caption>ブックマーク一覧</caption>  #参考サイトに書いてあったのでそのまま記載。必要なければ消すこと。 %>
-    <tbody>
-      <% @bookmarks.each do |bookmark| %>
-        <tr>
-          <td>
-            <%= link_to customer_path(bookmark.customer) do %>
-              <%= bookmark.customer.name %>
+<div class="main">
+  <div class="inner">
+    <div class="form__wrapper">
+      <h2 class="page-heading"><%= @user.name %>さんのマイページ</h2>
+      <div class="contents row">
+        <h4>＜ブックマーク一覧＞</h4>
+        <table>
+          <%# <caption>ブックマーク一覧</caption>  #参考サイトに書いてあったのでそのまま記載。必要なければ消すこと。 %>
+          <tbody>
+            <% @bookmarks.each do |bookmark| %>
+              <tr>
+                <td>
+                  <%= link_to customer_path(bookmark.customer) do %>
+                    <%= bookmark.customer.name %>
+                  <% end %>
+                </td>
+              </tr>
             <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+          </tbody>
+        </table>
+      </div><br>
+      <div><%= link_to "トップページへ戻る", root_path, class: "menu" %>
+      </div>
+    </div>
+  </div>
 </div>

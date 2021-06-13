@@ -11,26 +11,28 @@
 
   <body>
     <header class="header">
-      <div class="header__bar row">
-        <h1 class="grid-6"><a href="/">CRM</a></h1>
-        <% if user_signed_in? %>
-          <div class="user_nav grid-6">
-            <%= link_to "#{current_user.name}のマイページ", user_path(current_user) %>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-          </div>
-        <% else %>
-          <div class="grid-6">
-            <%= link_to "ログイン", new_user_session_path, class: "post" %>
-            <%= link_to "新規登録", new_user_registration_path, class: "post" %>
-          </div>
-        <% end %>
+      <div class="inner">
+        <div class="nav">
+          <div class="nav__left">
+            <h1 class="logo"><a href="/">CRM</a></h1>
+          </div>  
+            <% if user_signed_in? %>
+              <div class="nav__right">
+                <%= link_to "ログアウト", destroy_user_session_path, class: :nav__logout, method: :delete %>
+                <%= link_to "#{current_user.name}さんのマイページ", user_path(current_user), class: :nav__btn %>
+              </div>
+            <% else %>
+              <div class="grid-6">
+                <%= link_to "ログイン", new_user_session_path, class: :nav__btn %>
+                <%= link_to "新規登録", new_user_registration_path, class: :nav__btn %>
+              </div>
+            <% end %>
+        </div>
       </div>
     </header>  
     <%= yield %>
-        <footer>
-      <p>
-        Copyright CRM 2021.
-      </p>
+    <footer class="footer">
+      <p class="copyright">© 2021 Kazunori Kobayashi</p>
     </footer>
   </body>
 </html>
